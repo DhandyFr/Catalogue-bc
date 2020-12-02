@@ -114,7 +114,6 @@ export default {
     applyPriceFilter () {
       this.$store.dispatch('storeMinPrice', this.minPrice)
       this.$store.dispatch('storeMaxPrice', this.maxPrice)
-      console.log(this.maxPrice)
     },
     clearCategory () {
       this.category = ''
