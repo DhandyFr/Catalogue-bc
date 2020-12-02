@@ -7,6 +7,7 @@
     <div class="product">
       <div v-for="product in productsFilter" :key="product.id" class="product-card">
         <img :src="product.primaryImage" alt="product image" class="product-image">
+        <!-- <img :src="require(`~/assets/images/${product.primaryImage}`)" alt="product image" class="product-image"> -->
         <div class="product-attr">
           <div class="product-name">
             {{ product.name }}
@@ -26,50 +27,51 @@ export default {
   data () {
     return {
       search: '',
-      products: [
-        {
-          id: 1,
-          name: 'Kaos Polos Screamos',
-          price: 50000,
-          primaryImage: require('~/assets/images/kaos-polos.jpg'),
-          images: [],
-          color: [
-            {
-              name: 'Black',
-              image: ''
-            }
-          ],
-          category: 't-shirt'
-        },
-        {
-          id: 2,
-          name: 'Kaos Polos',
-          price: 30000,
-          primaryImage: require('~/assets/images/kaos-polos1.jpg'),
-          images: [],
-          color: [
-            {
-              name: 'Black',
-              image: ''
-            }
-          ],
-          category: 't-shirt'
-        },
-        {
-          id: 3,
-          name: 'Redknot Navi',
-          price: 150000,
-          primaryImage: require('~/assets/images/shoes-redknot.jpg'),
-          images: [],
-          color: [
-            {
-              name: 'Navi',
-              image: ''
-            }
-          ],
-          category: 'shoes'
-        }
-      ],
+      // products: [
+      //   {
+      //     id: 1,
+      //     name: 'Kaos Polos Screamos',
+      //     price: 50000,
+      //     primaryImage: require('~/assets/images/kaos-polos.jpg'),
+      //     images: [],
+      //     color: [
+      //       {
+      //         name: 'Black',
+      //         image: ''
+      //       }
+      //     ],
+      //     category: 't-shirt'
+      //   },
+      //   {
+      //     id: 2,
+      //     name: 'Kaos Polos',
+      //     price: 30000,
+      //     primaryImage: require('~/assets/images/kaos-polos1.jpg'),
+      //     images: [],
+      //     color: [
+      //       {
+      //         name: 'Black',
+      //         image: ''
+      //       }
+      //     ],
+      //     category: 't-shirt'
+      //   },
+      //   {
+      //     id: 3,
+      //     name: 'Redknot Navi',
+      //     price: 150000,
+      //     primaryImage: require('~/assets/images/shoes-redknot.jpg'),
+      //     images: [],
+      //     color: [
+      //       {
+      //         name: 'Navi',
+      //         image: ''
+      //       }
+      //     ],
+      //     category: 'shoes'
+      //   }
+      // ],
+      products: [],
       productsFilter: []
     }
   },
@@ -105,14 +107,19 @@ export default {
     }
   },
   mounted () {
-    this.productInit()
+    this.loadProducts()
   },
   methods: {
+    async loadProducts () {
+      this.products = await this.$axios.$get('/product')
+      this.productInit()
+    },
     productInit () {
       this.productsFilter = this.products
       // this.productsFilter.forEach((prod) => {
       //   prod.price = prod.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')
       // })
+      console.log(this.productsFilter)
     },
     searchProduct () {
       this.productsFilter = this.products.filter(prod =>

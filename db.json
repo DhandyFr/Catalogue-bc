@@ -4,23 +4,23 @@
       "id": 1,
       "name": "Koketo Miter Navy",
       "price": 159500,
-      "primaryImage": "require('~/assets/images/shoes-redknot.jpg')",
+      "primaryImage": "shoes-redknot.jpg",
       "images": [
-        "require('~/assets/images/koketo-miter-navy2.jpg')",
-        "require('~/assets/images/koketo-miter-navy3.jpg')"
+        "koketo-miter-navy2.jpg",
+        "koketo-miter-navy3.jpg"
       ],
       "color": [
         {
           "name": "Navi",
-          "image": "require('~/assets/images/koketo-miter-navy3.jpg')"
+          "image": "koketo-miter-navy3.jpg"
         },
         {
           "name": "Black",
-          "image": "require('~/assets/images/koketo-miter-hitam.jpg')"
+          "image": "koketo-miter-hitam.jpg"
         },
         {
           "name": "Grey",
-          "image": "require('~/assets/images/koketo-miter-abu.jpg')"
+          "image": "koketo-miter-abu.jpg"
         }
       ],
       "category": "shoes",
@@ -30,19 +30,19 @@
       "id": 2,
       "name": "Redknot Koketo York Denim",
       "price": 135900,
-      "primaryImage": "require('~/assets/images/koketo-york-denim-sol-hitam1.jpg')",
+      "primaryImage": "koketo-york-denim-sol-hitam1.jpg",
       "images": [
-        "require('~/assets/images/koketo-york-denim-sol-hitam2.jpg')",
-        "require('~/assets/images/koketo-york-denim-sol-hitam3.jpg')"
+        "koketo-york-denim-sol-hitam2.jpg",
+        "koketo-york-denim-sol-hitam3.jpg"
       ],
       "color": [
         {
           "name": "Denim",
-          "image": "require('~/assets/images/koketo-york-denim-sol-hitam3.jpg')"
+          "image": "koketo-york-denim-sol-hitam3.jpg"
         },
         {
           "name": "Cream",
-          "image": "require('~/assets/images/koketo-york-cream.jpg')"
+          "image": "koketo-york-cream.jpg"
         }
       ],
       "category": "shoes",
@@ -52,22 +52,22 @@
       "id": 3,
       "name": "Redknot T-Shirt",
       "price": 99900,
-      "primaryImage": "require('~/assets/images/redknot-t-shirt-navy1.jpg')",
+      "primaryImage": "redknot-t-shirt-navy1.jpg",
       "images": [
-        "require('~/assets/images/redknot-t-shirt-navy2.jpg')"
+        "redknot-t-shirt-navy2.jpg"
       ],
       "color": [
         {
           "name": "Grey",
-          "image": "require('~/assets/images/redknot-t-shirt-abu.jpg')"
+          "image": "redknot-t-shirt-abu.jpg"
         },
         {
           "name": "Black",
-          "image": "require('~/assets/images/redknot-t-shirt-hitam.jpg')"
+          "image": "redknot-t-shirt-hitam.jpg"
         },
         {
           "name": "Grey",
-          "image": "require('~/assets/images/redknot-t-shirt-navy1.jpg')"
+          "image": "redknot-t-shirt-navy1.jpg"
         }
       ],
       "category": "t-shirt",
@@ -77,18 +77,18 @@
       "id": 4,
       "name": "X-PAVON JACKET",
       "price": 494100,
-      "primaryImage": "require('~/assets/images/eiger-jaket-coklat1.jpg')",
+      "primaryImage": "eiger-jaket-coklat1.jpg",
       "images": [
-        "require('~/assets/images/eiger-jaket-coklat2.jpg')"
+        "eiger-jaket-coklat2.jpg"
       ],
       "color": [
         {
           "name": "Chocolate",
-          "image": "require('~/assets/images/eiger-jaket-coklat1.jpg')"
+          "image": "eiger-jaket-coklat1.jpg"
         },
         {
           "name": "Black",
-          "image": "require('~/assets/images/eiger-jaket-hitam.jpg')"
+          "image": "eiger-jaket-hitam.jpg"
         }
       ],
       "category": "jacket",
