@@ -14,13 +14,13 @@
         <a id="category-expand-icon" class="expand-icon">&#10094;</a>
       </div>
       <div id="category-item">
-        <div class="category" @click="changeCategory('t-shirt')">
+        <div class="category" :class="category === 't-shirt' ? 'category-active' : ''" @click="changeCategory('t-shirt')">
           T-shirt
         </div>
-        <div class="category" @click="changeCategory('jacket')">
+        <div class="category" :class="category === 'jacket' ? 'category-active' : ''" @click="changeCategory('jacket')">
           Jacket
         </div>
-        <div class="category" @click="changeCategory('shoes')">
+        <div class="category" :class="category === 'shoes' ? 'category-active' : ''" @click="changeCategory('shoes')">
           Shoes
         </div>
       </div>
@@ -114,6 +114,7 @@ export default {
     applyPriceFilter () {
       this.$store.dispatch('storeMinPrice', this.minPrice)
       this.$store.dispatch('storeMaxPrice', this.maxPrice)
+      console.log(this.maxPrice)
     },
     clearCategory () {
       this.category = ''
@@ -130,9 +131,9 @@ export default {
 <style scoped>
 .sidebar {
   width: 240px;
-  height: 500px;
+  height: fit-content;
   margin: 90px 0 0 0;
-  padding: 0 10px;
+  padding: 0 10px 30px 10px;
   display: flex;
   flex-direction: column;
   border-radius: 10px;
@@ -257,6 +258,11 @@ export default {
 
 .label-active {
   color: #5c4050 !important;
+}
+
+.category-active {
+  color: #5c4050;
+  font-family: 'Quicksand-SemiBold', sans-serif;
 }
 
 .icon-active {

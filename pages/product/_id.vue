@@ -13,42 +13,34 @@
     <div class="product-content">
       <div class="product-image">
         <div class="carousel">
-          <!-- <div class="carousel-item fade">
-            <img class="item-image" src="~/assets/images/kaos-polos.jpg" alt="test1">
-          </div>
           <div class="carousel-item fade">
-            <img class="item-image" src="~/assets/images/test-carousel2.jpg" alt="test2">
-          </div>
-          <div class="carousel-item fade">
-            <img class="item-image" src="~/assets/images/test-carousel3.jpg" alt="test3">
-          </div> -->
-          <div class="carousel-item fade">
-            <img class="item-image" :src="product.primaryImage" alt="product image">
+            <img class="item-image" :src="require(`~/assets/images/${product.primaryImage}`)" alt="product image">
           </div>
           <div
             v-for="image in product.images"
             :key="'c-'+image"
             class="carousel-item fade"
           >
-            <img class="item-image" :src="image" alt="product image">
+            <img class="item-image" :src="require(`~/assets/images/${image}`)" alt="product image">
           </div>
           <div
             v-for="color in product.color"
             :key="'c-'+color.name"
             class="carousel-item fade"
           >
-            <img class="item-image" :src="color.image" alt="product image">
+            <img class="item-image" :src="require(`~/assets/images/${color.image}`)" alt="product image">
           </div>
           <a class="prev-item" @click="plusSlide(-1)">&#10094;</a>
           <a class="next-item" @click="plusSlide(1)">&#10095;</a>
         </div>
         <div id="image-group">
-          <img class="image" :src="product.primaryImage" alt="product image" @click="showImage(1)">
+          <img class="image" :class="slideIndex === 1 ? 'image-focus' : ''" :src="require(`~/assets/images/${product.primaryImage}`)" alt="product image" @click="showImage(1)">
           <img
             v-for="(image, index) in product.images"
             :key="image"
             class="image"
-            :src="image"
+            :class="slideIndex === index+2 ? 'image-focus' : ''"
+            :src="require(`~/assets/images/${image}`)"
             alt="product image"
             @click="showImage(index + 2)"
           >
@@ -56,11 +48,11 @@
             v-for="(color, index) in product.color"
             :key="color.name"
             class="image"
-            :src="color.image"
+            :class="slideIndex === product.images.length + index + 2 ? 'image-focus' : ''"
+            :src="require(`~/assets/images/${color.image}`)"
             alt="product image"
             @click="showImage(product.images.length + index + 2)"
           >
-          <!-- <img v-for="i in 7" :key="i" class="image" src="~/assets/images/kaos-polos.jpg" alt="kaos-polos"> -->
           <a class="prev-image" @click="scrollLeft">&#10094;</a>
           <a class="next-image" @click="scrollRight">&#10095;</a>
         </div>
@@ -74,7 +66,7 @@
             Price
           </div>
           <div class="price">
-            Rp. {{ product.price }}
+            Rp. {{ Number(product.price).toLocaleString('id') }}
           </div>
         </div>
         <div class="product-color">
@@ -85,8 +77,8 @@
             <button
               v-for="(color, index) in product.color"
               :key="'v-'+color.name"
-              @click="showImage(product.images.length + index + 2)"
               class="product-color-btn"
+              @click="showImage(product.images.length + index + 2)"
             >
               {{ color.name }}
             </button>
@@ -108,35 +100,20 @@
 <script>
 export default {
   layout: 'product',
+  async asyncData (context) {
+    const id = context.params.id
+    try {
+      const product = await context.app.$axios.$get(
+        `https://my-json-server.typicode.com/DhandyFr/Catalogue-bc/product/${id}`
+      )
+      return { product }
+    } catch (e) {
+      context.error(e) // Show the nuxt error page with the thrown error
+    }
+  },
   data () {
     return {
-      slideIndex: 1,
-      product: {
-        id: 3,
-        name: 'Redknot Navi',
-        price: 150000,
-        primaryImage: require('~/assets/images/shoes-redknot.jpg'),
-        images: [
-          require('~/assets/images/koketo-miter-navy2.jpg'),
-          require('~/assets/images/koketo-miter-navy3.jpg')
-        ],
-        color: [
-          {
-            name: 'Navi',
-            image: require('~/assets/images/koketo-miter-navy3.jpg')
-          },
-          {
-            name: 'Black',
-            image: require('~/assets/images/koketo-miter-hitam.jpg')
-          },
-          {
-            name: 'Grey',
-            image: require('~/assets/images/koketo-miter-abu.jpg')
-          }
-        ],
-        category: 'shoes',
-        description: ''
-      }
+      slideIndex: 1
     }
   },
   mounted () {
@@ -145,7 +122,6 @@ export default {
   methods: {
     showSlide (n) {
       const slides = document.getElementsByClassName('carousel-item')
-      // const dots = document.getElementsByClassName('dot')
       if (n > slides.length) {
         this.slideIndex = 1
       }
@@ -155,11 +131,7 @@ export default {
       for (let index = 0; index < slides.length; index++) {
         slides[index].style.display = 'none'
       }
-      // for (let dotIndex = 0; dotIndex < dots.length; dotIndex++) {
-      //   dots[dotIndex].className = dots[dotIndex].className.replace(' active', '')
-      // }
       slides[this.slideIndex - 1].style.display = 'flex'
-      // dots[this.slideIndex - 1].className += ' active'
     },
     showImage (slideIndex) {
       this.showSlide(this.slideIndex = slideIndex)
@@ -173,7 +145,6 @@ export default {
     },
     scrollRight () {
       const imgElement = document.getElementById('image-group')
-      // imgElement.scrollLeft += 50
       let scrollAmount = 0
       const slideTimer = setInterval(function () {
         imgElement.scrollLeft += 20
@@ -185,7 +156,6 @@ export default {
     },
     scrollLeft () {
       const imgElement = document.getElementById('image-group')
-      // imgElement.scrollLeft -= 50
       let scrollAmount = 0
       const slideTimer = setInterval(function () {
         imgElement.scrollLeft -= 20
@@ -209,7 +179,6 @@ export default {
   margin: 0;
   display: flex;
   flex-direction: column;
-  /* border: 1px solid blue; */
 }
 
 .product-content {
@@ -268,7 +237,6 @@ export default {
 .product-content .product-image {
   width: 40%;
   min-width: 250px;
-  /* border: 1px solid blue; */
 }
 
 .product-content .product-detail {
@@ -276,7 +244,6 @@ export default {
   padding: 0 0 0 50px;
   display: flex;
   flex-direction: column;
-  /* border: 1px solid yellow; */
 }
 
 .product-name {
@@ -397,6 +364,11 @@ export default {
 .image:hover {
   cursor: pointer;
   box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.5);
+  border: 1px solid #5c4050;
+}
+
+.image-focus {
+  border: 1px solid #5c4050;
 }
 
 .prev-item, .next-item {
@@ -429,7 +401,6 @@ export default {
   cursor: pointer;
   position: sticky;
   width: auto;
-  /* margin-top: -22px; */
   padding: 8px 16px;
   color: white;
   font-weight: bold;
