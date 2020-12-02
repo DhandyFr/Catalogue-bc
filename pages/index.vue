@@ -6,8 +6,8 @@
     </div>
     <div class="product">
       <div v-for="product in productsFilter" :key="product.id" class="product-card">
-        <img :src="product.primaryImage" alt="product image" class="product-image">
-        <!-- <img :src="require(`~/assets/images/${product.primaryImage}`)" alt="product image" class="product-image"> -->
+        <!-- <img :src="product.primaryImage" alt="product image" class="product-image"> -->
+        <img :src="require(`~/assets/images/${product.primaryImage}`)" alt="product image" class="product-image">
         <div class="product-attr">
           <div class="product-name">
             {{ product.name }}
