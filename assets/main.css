@@ -1,0 +1,40 @@
+.layout-enter-active,
+.layout-leave-active {
+  transition: opacity 0.3s;
+}
+.layout-enter,
+.layout-leave-active {
+  opacity: 0;
+}
+
+@font-face {
+  font-family: 'Quicksand';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('~assets/fonts/Quicksand-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Quicksand-Medium';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('~assets/fonts/Quicksand-Medium.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Quicksand-SemiBold';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('~assets/fonts/Quicksand-SemiBold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Quicksand-Bold';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('~assets/fonts/Quicksand-Bold.ttf') format('truetype');
+}
